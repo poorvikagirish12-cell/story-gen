@@ -1,17 +1,6 @@
 version: '3.8'
 
 services:
-  db:
-    image: postgres:15
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
-    environment:
-      - POSTGRES_DB=${POSTGRES_DB:-pocketfm}
-      - POSTGRES_USER=${POSTGRES_USER:-postgres}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgres}
-    ports:
-      - "5432:5432"
-
   redis:
     image: redis:7-alpine
     ports:
@@ -27,7 +16,6 @@ services:
     env_file:
       - .env
     depends_on:
-      - db
       - redis
 
   celery:
@@ -38,9 +26,5 @@ services:
     env_file:
       - .env
     depends_on:
-      - db
       - redis
       - web
-
-volumes:
-  postgres_data:
