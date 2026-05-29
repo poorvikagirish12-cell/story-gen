@@ -1,0 +1,17 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@layer base {
+  body {
+    @apply bg-sciFiDark text-gray-300 font-sans antialiased min-h-screen;
+  }
+}
+
+@layer utilities {
+  .glow-cyan {
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.4), 0 0 30px rgba(0, 243, 255, 0.2);
+  }
+  .glow-text-cyan {
+    text-shadow: 0 0 8px rgba(0, 243, 255, 0.8);
+  }
+}
