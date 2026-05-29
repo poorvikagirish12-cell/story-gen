@@ -1,7 +1,6 @@
 databases:
   - name: story-gen-db
     databaseName: pocketfm
-    user: postgres
     plan: free
 
 services:
@@ -20,7 +19,7 @@ services:
       - key: POSTGRES_HOST
         fromDatabase:
           name: story-gen-db
-          property: internalHost
+          property: host
       - key: POSTGRES_DB
         fromDatabase:
           name: story-gen-db
@@ -39,7 +38,7 @@ services:
           name: story-gen-redis
           property: connectionString
       - key: GEMINI_API_KEY
-        sync: false # You will input this manually in the dashboard
+        sync: false
 
   # The Celery Background Worker
   - type: worker
@@ -51,7 +50,7 @@ services:
       - key: POSTGRES_HOST
         fromDatabase:
           name: story-gen-db
-          property: internalHost
+          property: host
       - key: POSTGRES_DB
         fromDatabase:
           name: story-gen-db
